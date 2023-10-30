@@ -1,0 +1,20 @@
+{
+  "name": "backend-lp2",
+  "version": "1.0.0",
+  "description": "Backend para cadastros básicos",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byelBorges/backend-lp2.git"
+  },
+  "author": "gabryelborges",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byelBorges/backend-lp2/issues"
+  },
+  "homepage": "https://github.com/byelBorges/backend-lp2#readme"
+}

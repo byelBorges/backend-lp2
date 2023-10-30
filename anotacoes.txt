@@ -1,0 +1,9 @@
+
+Para o backend utilizaremos o padrão MVC
+
+
+Qual entidade criar primeiro?(Em modelo)
+A que não depende de outra entidade
+
+
+colocar "type": "module", na raiz do objeto package.json
