@@ -1,3 +1,6 @@
+import CategoriaDAO from "../persistencia/categoriaDAO.js";
+//Não esqueça o ".js" ao final da importação
+
 export default class Categoria{
     #codigo;
     #descricao;
@@ -37,19 +40,23 @@ export default class Categoria{
     //Camada de modelo acessa a camada de persistencia
     //Limite do sistema---------Controle---------Modelo---------Persistência
     async gravar(){
-
+        const catDAO = new CategoriaDAO();
+        await catDAO.gravar(this);
     }
 
     async excluir(){
-
+        const catDAO = new CategoriaDAO();
+        await catDAO.excluir(this);
     }
 
-    async alterar(){
-
+    async atualizar(){
+        const catDAO = new CategoriaDAO();
+        await catDAO.atualizar(this);
     
     }
 
-    async consultar(){
-
+    async consultar(parametro){
+        const catDAO = new CategoriaDAO();
+        return await catDAO.consultar(parametro);
     }
 }

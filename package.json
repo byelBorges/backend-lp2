@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/byelBorges/backend-lp2/issues"
   },
-  "homepage": "https://github.com/byelBorges/backend-lp2#readme"
+  "homepage": "https://github.com/byelBorges/backend-lp2#readme",
+  "dependencies": {
+    "mysql2": "^3.6.3"
+  }
 }
