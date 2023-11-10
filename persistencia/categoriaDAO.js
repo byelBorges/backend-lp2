@@ -1,4 +1,4 @@
-import conectar from "./conexao";
+import conectar from "./conexao.js";
 import Categoria from "../modelo/categoria.js";
 
 //DAO = Data access object -> Objeto de acesso aos dados

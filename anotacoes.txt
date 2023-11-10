@@ -16,3 +16,6 @@ colocar "type": "module", na raiz do objeto package.json
 
 Instalando dependencias no projeto
 npm install mysql2
+
+
+aplicação padrão rest

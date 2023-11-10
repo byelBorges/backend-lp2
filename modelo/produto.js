@@ -1,3 +1,5 @@
+import ProdutoDAO from "../persistencia/produtoDAO.js";
+
 export default class Produto{
     #codigo;
     #nome;
@@ -92,19 +94,23 @@ export default class Produto{
     }
 
     async gravar(){
+        const prodDAO= new ProdutoDAO();
+        await prodDAO.gravar(this);
+    }
 
+    async atualizar(){
+        const prodDAO= new ProdutoDAO();
+        await prodDAO.atualizar(this);
     }
 
     async excluir(){
-
+        const prodDAO= new ProdutoDAO();
+        await prodDAO.excluir(this)
     }
 
-    async alterar(){
-
-    }
-
-    async consultar(){
-
+    async consultar(termo){
+        const prodDAO= new ProdutoDAO();
+        return await prodDAO.consultar(termo);
     }
 }
 //Codeium
