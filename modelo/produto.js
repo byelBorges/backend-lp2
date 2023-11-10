@@ -1,5 +1,6 @@
 export default class Produto{
     #codigo;
+    #nome;
     #descricao;
     #precoCusto;
     #precoVenda;
@@ -7,8 +8,9 @@ export default class Produto{
     #qtdEstoque;
     #categoria;
 
-    constructor(codigo=0, descricao='', precoCusto=0, precoVenda=0, dataValidade='', qtdEstoque=0, categoria={}){
+    constructor(codigo=0, nome='', descricao='', precoCusto=0, precoVenda=0, dataValidade='', qtdEstoque=0, categoria={}){
         this.#codigo = codigo;
+        this.#nome= nome;
         this.#descricao = descricao;
         this.#precoCusto = precoCusto;
         this.#precoVenda = precoVenda;
@@ -22,6 +24,13 @@ export default class Produto{
     }
     set codigo(novoCodigo){
         this.#codigo= novoCodigo;
+    }
+
+    get nome(){
+        return this.#nome;
+    }
+    set nome(novoNome){
+        this.#nome = novoNome;
     }
 
     get descricao(){

@@ -3,9 +3,6 @@ import Categoria from "../modelo/categoria.js";
 
 //DAO = Data access object -> Objeto de acesso aos dados
 export default class CategoriaDAO {
-
-
-
     async gravar(categoria) {
         if (categoria instanceof Categoria) {
             const sql = "INSERT INTO categoria(cat_descricao) VALUES(?)";
