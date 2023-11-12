@@ -110,7 +110,23 @@ export default class CategoriaCtrl {
     consultar(requisicao, resposta) {
         resposta.type('application/json');
         if (requisicao.method === "GET" && requisicao.is("application/json")) {
-
+            const termo = requisicao.body.termo;
+            const cat = new Categoria();
+            cat.consultar(termo).then((listaCategorias)=>{
+                resposta.status(200).json(listaCategorias);
+            })
+            .catch((erro)=>{
+                resposta.status(500).json({
+                    "status": false,
+                    "mensagem": "Erro ao consultar categoria: " + erro.message
+                });
+            });
+        }
+        else{
+            resposta.status(400).json({
+                "status": false,
+                "mensagem": "Por favor, utilize o método GET para consultar uma categoria!"
+            });
         }
     }
 }
