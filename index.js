@@ -1,20 +1,18 @@
-import Produto from './modelo/produto.js';
-import Categoria from './modelo/categoria.js';
-//Arquivo feito para testes
+import express from "express";
+import rotaCategoria from "./rotas/rotaCategoria.js";
+import rotaProduto from "./rotas/rotaProduto.js";
 
+//Aplicação HTTP pronta, bastando parametrizá-la
+const host = "0.0.0.0";
+const porta = 4000;
+const app = express();
 
-/*const categoria = new Categoria(1, 'Calçados');
-categoria.gravar().then(()=>{
-    console.log(categoria.id);
+//Preparar a app para entender o formato JSON
+app.use(express.json());
+
+app.use('/categoria', rotaCategoria);
+app.use('/produto', rotaProduto);
+
+app.listen(porta, host, ()=>{
+    console.log(`API do sistema em execução: ${host}:${porta}`);
 });
-*/
-const categoria = new Categoria();
-categoria.consultar('calçad').then((listaCat)=>{
-    console.log(listaCat);
-});
-
-const produto = new Produto(1, 'Tenis Allstar', 55.50, 109.90, 'Indeterminada', 10, categoria);
-
-console.log(produto.toJSON());
-
-//Atividade: implementar para a camada de produto(atualizar, inserir, excluir, consultar)etc.

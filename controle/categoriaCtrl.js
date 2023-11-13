@@ -107,26 +107,57 @@ export default class CategoriaCtrl {
         }
     }
     //Para segunda-feira, implementar o control para produto(fazer o produtoCtrl)
-    consultar(requisicao, resposta) {
+    consultarMeu(requisicao, resposta) {
         resposta.type('application/json');
         if (requisicao.method === "GET" && requisicao.is("application/json")) {
             const termo = requisicao.body.termo;
             const cat = new Categoria();
-            cat.consultar(termo).then((listaCategorias)=>{
+            cat.consultar(termo).then((listaCategorias) => {
                 resposta.status(200).json(listaCategorias);
             })
-            .catch((erro)=>{
-                resposta.status(500).json({
-                    "status": false,
-                    "mensagem": "Erro ao consultar categoria: " + erro.message
+                .catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Erro ao consultar categoria: " + erro.message
+                    });
                 });
-            });
         }
-        else{
+        else {
             resposta.status(400).json({
                 "status": false,
                 "mensagem": "Por favor, utilize o método GET para consultar uma categoria!"
             });
         }
     }
+
+    consultar(requisicao, resposta) {
+        resposta.type("application/json");
+        let termo = requisicao.params.termo;
+        if (!termo) {
+            termo = "";
+        }
+        if (requisicao.method === "GET") {
+            const categoria = new Categoria();
+            categoria.consultar(termo).then((listaCategorias) => {
+                resposta.json({
+                    status: true,
+                    listaCategorias,//Igual a "listaCategorias": listaCategorias,
+                    
+                });
+            })
+                .catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Não foi possível obter as categorias " + erro.message
+                    });
+                });
+        }
+        else {
+            resposta.status(400).json({
+                "status": false,
+                "mensagem": "Por favor, utilize o metodo GET para consultar uma categoria"
+            });
+        }
+    }
+    //
 }

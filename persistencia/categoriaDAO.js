@@ -9,7 +9,7 @@ export default class CategoriaDAO {
             const parametros = [categoria.descricao];
             const conexao = await conectar();//Retorna uma conexão
             const retorno = await conexao.execute(sql, parametros);
-            categoria.id = retorno[0].insertId;//SQL vai gerar um id e aqui atribuimos esse id gerado ao objeto categoria//retorno é um 'objeto lista'(depurar para entender)
+            categoria.codigo = retorno[0].insertId;//SQL vai gerar um id e aqui atribuimos esse id gerado ao objeto categoria//retorno é um 'objeto lista'(depurar para entender)
             global.poolConexoes.releaseConnection(conexao);
         }
     }
@@ -36,26 +36,24 @@ export default class CategoriaDAO {
 
     async consultar(parametroConsulta) {
         let sql = '';
-        let parametros = '';
-        if(!isNaN(parseInt(parametroConsulta))){//Number.isInteger(parametroConsulta);
+        let parametros = [];
+        if (!isNaN(parseInt(parametroConsulta))) {//Number.isInteger(parametroConsulta);
             //Consultar pelo código da categoria
             sql = "SELECT * FROM categoria WHERE cat_codigo = ? order by cat_descricao";
             parametros = [parametroConsulta];
         }
-        else{
+        else {
             //Consultar pela descricao
-            if(!parametroConsulta){
+            if (!parametroConsulta) {
                 parametroConsulta = '';
             }
-            else{
-                sql = "SELECT * FROM  categoria WHERE cat_descricao like ?";
-                parametros = ['%' + parametroConsulta + '%'];
-            }
+            sql = "SELECT * FROM  categoria WHERE cat_descricao like ?";
+            parametros = ['%' + parametroConsulta + '%'];
         }
         const conexao = await conectar();
         const [registros, campos] = await conexao.execute(sql, parametros);
         let listaCategorias = [];
-        for(const registro of registros ){
+        for (const registro of registros) {
             const categoria = new Categoria(registro.cat_codigo, registro.cat_descricao);
             listaCategorias.push(categoria);
         }
