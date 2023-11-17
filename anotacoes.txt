@@ -1,6 +1,4 @@
-
 Para o backend utilizaremos o padrão MVC
-
 
 Qual entidade criar primeiro?(Em modelo)
 A que não depende de outra entidade
@@ -9,22 +7,178 @@ A que não depende de outra entidade
 colocar "type": "module", na raiz do objeto package.json
 
 
-
-
-
-
-
 Instalando dependencias no projeto
 npm install mysql2
-
+npm install express
+npm install cors
 
 aplicação padrão rest
-
 
 Testando com postman
 http://localhost:4000/categoria
 
 Depurando:
 run, start debugging, node.js, ir no postman e mandar a requisicao
-
 Em post, ir em body selecionar raw e json
+
+exemplos de requisições para mandar via postman:
+CLIENTES:
+{
+    "cpf": "123.456.789-01",
+    "nome": "Maria Silva",
+    "endereco": "Rua das Flores",
+    "bairro": "Centro",
+    "numero": 123,
+    "cidade": "São Paulo",
+    "uf": "SP",
+    "cep": "01234-567"
+  }
+
+{
+    "cpf": "987.654.321-00",
+    "nome": "João Oliveira",
+    "endereco": "Avenida dos Pássaros",
+    "bairro": "Jardim Botânico",
+    "numero": 456,
+    "cidade": "Rio de Janeiro",
+    "uf": "RJ",
+    "cep": "23456-789"
+  }
+
+{
+    "cpf": "111.222.333-44",
+    "nome": "Carlos Santos",
+    "endereco": "Travessa das Estrelas",
+    "bairro": "Vila Celestial",
+    "numero": 789,
+    "cidade": "Belo Horizonte",
+    "uf": "MG",
+    "cep": "34567-890"
+  }
+
+
+
+
+FORNECEDORES:
+
+{
+    "cnpj": "12.345.678/0001-01",
+    "nome": "Fornecedor A Ltda.",
+    "endereco": "Rua Comercial",
+    "bairro": "Centro",
+    "email": "fornecedora@email.com",
+    "numero": 234,
+    "complemento": "Sala 3",
+    "cep": "12345-678",
+    "telefone": "(11) 1234-5678"
+  }
+
+{
+    "cnpj": "98.765.432/0001-02",
+    "nome": "Fornecedor B S.A.",
+    "endereco": "Avenida Industrial",
+    "bairro": "Distrito Industrial",
+    "email": "fornecedorb@email.com",
+    "numero": 567,
+    "complemento": "Andar 2",
+    "cep": "87654-321",
+    "telefone": "(21) 9876-5432"
+  }
+
+{
+    "cnpj": "11.222.333/0001-03",
+    "nome": "Fornecedor C Comércio",
+    "endereco": "Travessa do Comércio",
+    "bairro": "Bairro Comercial",
+    "email": "fornecedorc@email.com",
+    "numero": 789,
+    "complemento": "Loja 5",
+    "cep": "34567-890",
+    "telefone": "(31) 1111-2222"
+  }
+
+
+
+
+
+CATEGORIAS:
+
+{
+    "descricao": "Eletrônicos"
+}
+
+{
+      "descricao": "Roupas"
+    }
+
+{
+      "descricao": "Cosméticos"
+    }
+
+
+
+PRODUTOS:
+
+{
+    "nome": "Produto A",
+    "descricao": "Descrição do Produto A",
+    "precoCusto": 20.00,
+    "precoVenda": 39.99,
+    "dataValidade": "2023-12-31",
+    "qtdEstoque": 100,
+    "categoria": {
+      "codigo": "1"
+    }
+  }
+
+
+{
+    "nome": "Produto B",
+    "descricao": "Descrição do Produto B",
+    "precoCusto": 15.50,
+    "precoVenda": 29.99,
+    "dataValidade": "2023-11-30",
+    "qtdEstoque": 75,
+    "categoria": {
+      "codigo": "2"
+    }
+  }
+
+
+{
+    "nome": "Produto C",
+    "descricao": "Descrição do Produto C",
+    "precoCusto": 30.00,
+    "precoVenda": 59.99,
+    "dataValidade": "2024-02-28",
+    "qtdEstoque": 50,
+    "categoria": {
+      "codigo": "3"
+    }
+  }
+
+
+{
+    "nome": "Camiseta Casual",
+    "descricao": "Camiseta confortável para uso diário",
+    "precoCusto": 18.00,
+    "precoVenda": 34.99,
+    "dataValidade": "2023-10-31",
+    "qtdEstoque": 60,
+    "categoria": {
+      "codigo": "2"
+    }
+  }
+
+
+{
+    "nome": "Calça Jeans Slim",
+    "descricao": "Calça jeans moderna e elegante",
+    "precoCusto": 35.00,
+    "precoVenda": 69.99,
+    "dataValidade": "2023-11-30",
+    "qtdEstoque": 40,
+    "categoria": {
+      "codigo": "2"
+    }
+  }
