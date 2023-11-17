@@ -1,9 +1,9 @@
 import Cliente from "../modelo/cliente.js"
-import conectar from "./conexao";
+import conectar from "./conexao.js";
 export default class ClienteDAO{
     async gravar(cliente){
         if(cliente instanceof Cliente){
-            const sql = "INSERT INTO cliente (cli_cpf, cli_nome, cli_endereco, cli_bairro, cli_num, cli_cidade, cli_uf, cli_cep) VALUES (?,?,?,?,?,?,?,?)";
+            const sql = "INSERT INTO cliente(cli_cpf, cli_nome, cli_endereco, cli_bairro, cli_num, cli_cidade, cli_uf, cli_cep) VALUES (?,?,?,?,?,?,?,?)";
             const parametros = [cliente.cpf, cliente.nome, cliente.endereco, cliente.bairro, cliente.numero, cliente.cidade, cliente.uf, cliente.cep];
             const conexao = await conectar();
             const retorno = await conexao.execute(sql, parametros);
@@ -57,6 +57,7 @@ export default class ClienteDAO{
             const cliente = new Cliente(registro.cli_codigo, registro.cli_cpf, registro.cli_nome, registro.cli_endereco, registro.cli_bairro, registro.cli_num, registro.cli_cidade, registro.cli_uf, registro.cli_cep);
             listaClientes.push(cliente);
         }
+        globalThis.poolConexoes.releaseConnection(conexao);
         return listaClientes;
     }
 }

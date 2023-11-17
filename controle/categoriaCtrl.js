@@ -107,7 +107,7 @@ export default class CategoriaCtrl {
         }
     }
     //Para segunda-feira, implementar o control para produto(fazer o produtoCtrl)
-    consultarMeu(requisicao, resposta) {
+    /*consultarMeu(requisicao, resposta) {
         resposta.type('application/json');
         if (requisicao.method === "GET" && requisicao.is("application/json")) {
             let termo = requisicao.params.termo;
@@ -132,6 +132,7 @@ export default class CategoriaCtrl {
             });
         }
     }
+    */
 
     consultar(requisicao, resposta) {
         resposta.type("application/json");
@@ -142,7 +143,7 @@ export default class CategoriaCtrl {
         if (requisicao.method === "GET") {
             const categoria = new Categoria();
             categoria.consultar(termo).then((listaCategorias) => {
-                resposta.json({
+                resposta.status(200).json({
                     status: true,
                     listaCategorias,//Igual a "listaCategorias": listaCategorias,
                     

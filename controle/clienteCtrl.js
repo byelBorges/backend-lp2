@@ -5,7 +5,6 @@ export default class ClienteCtrl {
         resposta.type('application/json');
         if (requisicao.method === "POST" && requisicao.is('application/json')) {
             const dados = requisicao.body;
-            const codigo = dados.codigo;
             const cpf = dados.cpf;
             const nome = dados.nome;
             const endereco = dados.endereco;
@@ -14,8 +13,8 @@ export default class ClienteCtrl {
             const cidade = dados.cidade;
             const uf = dados.uf;
             const cep = dados.cep;
-            if (codigo && cpf && nome && endereco && bairro && numero && cidade && uf && cep) {
-                const cliente = new Cliente(codigo, cpf, nome, endereco, bairro, numero, cidade, uf, cep);
+            if (cpf && nome && endereco && bairro && numero && cidade && uf && cep) {
+                const cliente = new Cliente(0, cpf, nome, endereco, bairro, numero, cidade, uf, cep);
                 cliente.gravar().then(() => {
                     resposta.status(200).json({
                         "status": true,
