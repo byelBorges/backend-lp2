@@ -49,15 +49,17 @@ export default class FornecedorCtrl {
         resposta.type('application/json');
         if ((requisicao.method === "PUT" || requisicao.method === "PATCH") && requisicao.is('application/json')) {
             const dados = requisicao.body;
+            const codigo = dados.codigo;
             const cnpj = dados.cnpj;
             const nome= dados.nome;
             const endereco = dados.endereco;
             const email = dados.email;
             const numero = dados.numero;
+            const complemento = dados.complemento;
             const cep = dados.cep;
             const telefone = dados.telefone;
-            if (cnpj && nome && endereco && email && numero && cep && telefone) {
-                const fornecedor = new Fornecedor(0, cnpj, nome, endereco, email, numero, cep, telefone);
+            if (codigo && cnpj && nome && endereco && bairro && email && numero && complemento && cep && telefone) {
+                const fornecedor = new Fornecedor(0, cnpj, nome, endereco, bairro, email, numero, complemento, cep, telefone);
                 fornecedor.atualizar().then(() => {
                     resposta.status(200).json({
                         "status": true,
