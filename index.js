@@ -3,11 +3,13 @@ import rotaCategoria from "./rotas/rotaCategoria.js";
 import rotaProduto from "./rotas/rotaProduto.js";
 import rotaCliente from "./rotas/rotaCliente.js";
 import rotaFornecedor from "./rotas/rotaFornecedor.js";
+import cors from "cors";
 
 //Aplicação HTTP pronta, bastando parametrizá-la
 const host = "0.0.0.0";
 const porta = 4000;
 const app = express();
+app.use(cors({origin:"*"}));
 
 //Preparar a app para entender o formato JSON
 app.use(express.json());

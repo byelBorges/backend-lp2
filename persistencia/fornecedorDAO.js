@@ -4,7 +4,7 @@ export default class FornecedorDAO{
     async gravar(fornecedor){
         if(fornecedor instanceof Fornecedor){
             const sql = "INSERT INTO fornecedor(forn_CNPJ, forn_nome, forn_endereco, forn_bairro, forn_email, forn_num, forn_complemento, forn_cep, forn_tel) VALUES (?,?,?,?,?,?,?,?,?)";
-            const parametros = [fornecedor.cnpj, fornecedor.nome, fornecedor.endereco, fornecedor.bairro, fornecedor.email, fornecedor.numero, fornecedor.complemento, fornecedor.cep, fornecedor.tel];
+            const parametros = [fornecedor.cnpj, fornecedor.nome, fornecedor.endereco, fornecedor.bairro, fornecedor.email, fornecedor.numero, fornecedor.complemento, fornecedor.cep, fornecedor.telefone];
             const conexao = await conectar();
             const retorno = await conexao.execute(sql, parametros);
             fornecedor.codigo = retorno[0].InsertID;
@@ -15,7 +15,7 @@ export default class FornecedorDAO{
     async atualizar(fornecedor){
         if(fornecedor instanceof Fornecedor){
             const sql = "UPDATE fornecedor SET forn_CNPJ= ?, forn_nome= ?, forn_endereco= ?, forn_bairro= ?, forn_email= ?, forn_num= ?, forn_complemento= ?, forn_cep= ?, forn_tel = ? WHERE forn_codigo = ?";
-            const parametros = [fornecedor.cnpj, fornecedor.nome, fornecedor.endereco, fornecedor.bairro, fornecedor.email, fornecedor.numero, fornecedor.complemento, fornecedor.cep, fornecedor.tel, fornecedor.codigo];
+            const parametros = [fornecedor.cnpj, fornecedor.nome, fornecedor.endereco, fornecedor.bairro, fornecedor.email, fornecedor.numero, fornecedor.complemento, fornecedor.cep, fornecedor.telefone, fornecedor.codigo];
             const conexao = await conectar();
             await conexao.execute(sql, parametros);
             globalThis.poolConexoes.releaseConnection(conexao);

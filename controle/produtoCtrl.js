@@ -17,7 +17,7 @@ export default class ProdutoCtrl {
             const categoria = dados.categoria;
 
             if (nome && descricao && precoCusto > 0 && precoVenda > 0 && dataValidade && qtdEstoque >= 0 && categoria) {
-                const produto = new Produto(0, nome, descricao, precoCusto, precoVenda, dataValidade, qtdEstoque, categoria);
+                const produto = new Produto(0, nome, descricao, precoCusto, precoVenda, dataValidade, qtdEstoque, categoria.codigo);
                 produto.gravar().then(() => {
                     resposta.status(200).json({
                         "status": true,
