@@ -1,20 +1,26 @@
+import FornecedorDAO from "../persistencia/fornecedorDAO.js";
+
 export default class Fornecedor{
     #codigo;
     #cnpj;
     #nome;
     #endereco;
+    #bairro;
     #email;
     #numero;
+    #complemento;
     #cep;
     #telefone;
 
-    constructor(codigo= 0, cnpj='', nome='', endereco='', email='', numero= 0, cep='', telefone='') {
+    constructor(codigo= 0, cnpj='', nome='', endereco='', bairro='', email='', numero= 0, complemento='',cep='', telefone='') {
         this.#codigo = codigo;
         this.#cnpj = cnpj;
         this.#nome = nome;
         this.#endereco = endereco;
+        this.#bairro=bairro;
         this.#email = email;
         this.#numero = numero;
+        this.#complemento = complemento;
         this.#cep = cep;
         this.#telefone = telefone;
     }
@@ -47,6 +53,13 @@ export default class Fornecedor{
         this.#endereco = novoEndereco;
     }
 
+    get bairro() {
+        return this.#bairro;
+    }
+    set bairro(novoBairro) {
+        this.#bairro = novoBairro;
+    }
+
     get email() {
         return this.#email;
     }
@@ -59,6 +72,13 @@ export default class Fornecedor{
     }
     set numero(novoNumero) {
         this.#numero = novoNumero;
+    }
+
+    get complemento() {
+        return this.#complemento;
+    }
+    set complemento(novoComplemento) {
+        this.#complemento = novoComplemento;
     }
 
     get cep() {
@@ -80,22 +100,37 @@ export default class Fornecedor{
     }
 
     toJSON(){
-
+        return{
+            codigo: this.#codigo,
+            cnpj: this.#cnpj,
+            nome: this.#nome,
+            endereco: this.#endereco,
+            bairro: this.#bairro,
+            email: this.#email,
+            numero: this.#numero,
+            complemento: this.#complemento,
+            cep: this.#cep,
+            telefone: this.#telefone
+        }
     }
 
     async gravar(){
-
+        const forDAO = new FornecedorDAO();
+        await forDAO.gravar(this);
     }
 
     async atualizar(){
-
+        const forDAO = new FornecedorDAO();
+        await forDAO.atualizar(this);
     }
 
     async excluir(){
-
+        const forDAO = new FornecedorDAO();
+        await forDAO.excluir(this);
     }
 
-    async consultar(){
-
+    async consultar(termo){
+        const forDAO = new FornecedorDAO();
+        await forDAO.consultar(termo);
     }
 }
