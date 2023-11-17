@@ -5,14 +5,18 @@ export default class ProdutoCtrl {
         resposta.type('application/json');
         if (requisicao.method === "POST" && requisicao.is("application/json")) {
             const dados = requisicao.body;
-            let nome = dados.nome;
-            let descricao = dados.descricao;
-            let precoCusto = dados.precoCusto;
-            let precoVenda = dados.precoVenda;
-            let dataValidade = dados.dataValidade;
-            let qtdEstoque = dados.qtdEstoque;
-            let categoria = dados.categoria;
-            if (nome && descricao && precoCusto && precoVenda && dataValidade && qtdEstoque && categoria) {
+            const nome = dados.nome;
+            const descricao = dados.descricao;
+            const precoCusto = dados.precoCusto;
+            const precoVenda = dados.precoVenda;
+            const dataValidade = dados.dataValidade;
+            const qtdEstoque = dados.qtdEstoque;
+
+            //Instanciar categoria? Ou pegar direto?
+            //Verificar se categoria existe
+            const categoria = dados.categoria;
+
+            if (nome && descricao && precoCusto > 0 && precoVenda > 0 && dataValidade && qtdEstoque >= 0 && categoria) {
                 const produto = new Produto(0, nome, descricao, precoCusto, precoVenda, dataValidade, qtdEstoque, categoria);
                 produto.gravar().then(() => {
                     resposta.status(200).json({
@@ -30,7 +34,7 @@ export default class ProdutoCtrl {
             else {
                 resposta.status(400).json({
                     "status": false,
-                    "mensagem": "Informe todos os atributos de produto para cadastrá-lo!"
+                    "mensagem": "Informe os dados de produto conforme a API"
                 })
             }
         }
@@ -46,14 +50,14 @@ export default class ProdutoCtrl {
         resposta.type("application/json");
         if ((requisicao.method === "PUT" || requisicao.method === "PATCH") && requisicao.is("application/json")) {
             const dados = requisicao.body;
-            let codigo = dados.codigo;
-            let nome = dados.nome;
-            let descricao = dados.descricao;
-            let precoCusto = dados.precoCusto;
-            let precoVenda = dados.precoVenda;
-            let dataValidade = dados.dataValidade;
-            let qtdEstoque = dados.qtdEstoque;
-            let categoria = dados.categoria;
+            const codigo = dados.codigo;
+            const nome = dados.nome;
+            const descricao = dados.descricao;
+            const precoCusto = dados.precoCusto;
+            const precoVenda = dados.precoVenda;
+            const dataValidade = dados.dataValidade;
+            const qtdEstoque = dados.qtdEstoque;
+            const categoria = dados.categoria;
             if (codigo && nome && descricao && precoCusto && precoVenda && dataValidade && qtdEstoque && categoria) {
                 const produto = new Produto(codigo, nome, descricao, precoCusto, precoVenda, dataValidade, qtdEstoque, categoria);
                 produto.atualizar().then(()=>{
@@ -86,7 +90,7 @@ export default class ProdutoCtrl {
     excluir(requisicao, resposta) {
         resposta.type("application/json");
         if(requisicao.method === "DELETE" && requisicao.is("application/json")){
-            let codigo = requisicao.body.codigo;
+            const codigo = requisicao.body.codigo;
             if(codigo){
                 const produto = new Produto(codigo);
                 produto.excluir().then(()=>{
@@ -115,7 +119,7 @@ export default class ProdutoCtrl {
             })
         }
     }
-
+    //Revisar
     consultar(requisicao, resposta) {
         resposta.type("application/json");
         if(requisicao.method === "GET" && requisicao.is("application/json")){
