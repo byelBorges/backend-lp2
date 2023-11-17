@@ -110,7 +110,10 @@ export default class CategoriaCtrl {
     consultar(requisicao, resposta) {
         resposta.type('application/json');
         if (requisicao.method === "GET" && requisicao.is("application/json")) {
-            const termo = requisicao.body.termo;
+            let termo = requisicao.params.termo;
+            if(!termo){
+                termo="";
+            }
             const cat = new Categoria();
             cat.consultar(termo).then((listaCategorias)=>{
                 resposta.status(200).json(listaCategorias);

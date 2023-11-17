@@ -3,19 +3,19 @@ import conectar from "./conexao";
 export default class ClienteDAO{
     async gravar(cliente){
         if(cliente instanceof Cliente){
-            const sql = "";
-            const parametros = [];
+            const sql = "INSERT INTO cliente (cli_cpf, cli_nome, cli_endereco, cli_bairro, cli_num, cli_cidade, cli_uf, cli_cep) VALUES (?,?,?,?,?,?,?,?)";
+            const parametros = [cliente.cpf, cliente.nome, cliente.endereco, cliente.bairro, cliente.numero, cliente.cidade, cliente.uf, cliente.cep];
             const conexao = await conectar();
             const retorno = await conexao.execute(sql, parametros);
-            cliente.id = retorno[0].insertId;
+            cliente.codigo = retorno[0].insertId;
             globalThis.poolConexoes.releaseConnection(conexao);
         }
     }
 
     async atualizar(cliente){
         if(cliente instanceof Cliente){
-            const sql = "";
-            const parametros = [];
+            const sql = "UPDATE cliente SET cli_cpf= ?, cli_nome= ?, cli_endereco= ?, cli_bairro= ?, cli_num= ?, cli_cidade= ?, cli_uf= ?, cli_cep= ? WHERE cli_codigo = ?";
+            const parametros = [cliente.cpf, cliente.nome, cliente.endereco, cliente.bairro, cliente.numero, cliente.cidade, cliente.uf, cliente.cep, cliente.codigo];
             const conexao = await conectar();
             await conexao.execute(sql, parametros);
             globalThis.poolConexoes.releaseConnection(conexao);
@@ -24,8 +24,8 @@ export default class ClienteDAO{
 
     async excluir(cliente){
         if(cliente instanceof Cliente){
-            const sql = "";
-            const parametros = [];
+            const sql = "DELETE cliente WHERE cli_codigo = ?";
+            const parametros = [cliente.codigo];
             const conexao = await conectar();
             await conexao.execute(sql, parametros);
             globalThis.poolConexoes.releaseConnection(conexao);
@@ -36,8 +36,8 @@ export default class ClienteDAO{
         let sql= '';
         let parametros = [];
         //Poderia utilizar esse if  no lugar no isNaN
-        if(Number.isInteger(parametroConsulta)){
-            sql = '';//Pesquisa por id
+        if(Number.isInteger(Number(parametroConsulta))){
+            sql = 'SELECT * FROM cliente where cli_codigo = ?';//Pesquisa por id
             parametros = [parametroConsulta];
         }
         else{
@@ -46,7 +46,7 @@ export default class ClienteDAO{
                 parametroConsulta='';
             }
             else{
-                sql = '';
+                sql = 'SELECT * FROM cliente where cli_nome like ?';
                 parametros = ['%' + parametroConsulta + '%'];
             }
         }
@@ -54,7 +54,7 @@ export default class ClienteDAO{
         const [registros] = await conexao.execute(sql, parametros);
         let listaClientes = [];
         for(const registro of registros){
-            const cliente = new Cliente();//...
+            const cliente = new Cliente(registro.cli_codigo, registro.cli_cpf, registro.cli_nome, registro.cli_endereco, registro.cli_bairro, registro.cli_num, registro.cli_cidade, registro.cli_uf, registro.cli_cep);
             listaClientes.push(cliente);
         }
         return listaClientes;

@@ -34,7 +34,7 @@ CREATE TABLE fornecedor(
 
 CREATE TABLE cliente(
     cli_codigo INT NOT NULL AUTO_INCREMENT,
-    cli_cpf VARCHAR(11) NOT NULL,
+    cli_cpf VARCHAR(11) NOT NULL UNIQUE,
     cli_nome VARCHAR(50) NOT NULL,
     cli_endereco VARCHAR(100),
     cli_bairro VARCHAR(40),

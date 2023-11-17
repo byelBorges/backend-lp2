@@ -1,4 +1,6 @@
-export default class Cliente{
+import ClienteDAO from "../persistencia/clienteDAO.js";
+
+export default class Cliente {
     #codigo;
     #cpf;
     #nome;
@@ -9,7 +11,7 @@ export default class Cliente{
     #uf;
     #cep;
 
-    constructor(codigo= 0, cpf='', nome='', endereco='', bairro='', numero='', cidade='', uf='', cep=''){
+    constructor(codigo = 0, cpf = '', nome = '', endereco = '', bairro = '', numero = '', cidade = '', uf = '', cep = '') {
         this.#codigo = codigo;
         this.#cpf = cpf;
         this.#nome = nome;
@@ -21,10 +23,10 @@ export default class Cliente{
         this.#cep = cep;
     }
 
-    get codigo(){
+    get codigo() {
         return this.#codigo;
     }
-    set codigo(novoCodigo){
+    set codigo(novoCodigo) {
         this.#codigo = novoCodigo;
     }
 
@@ -84,27 +86,41 @@ export default class Cliente{
         this.#cep = novoCEP;
     }
 
-    toString(){
+    toString() {
 
     }
 
-    toJSON(){
-
+    toJSON() {
+        return {
+        codigo: this.#codigo,
+        cpf: this.#cpf,
+        nome: this.#nome,
+        endereco: this.#endereco,
+        bairro: this.#bairro,
+        numero: this.#numero,
+        cidade: this.#cidade,
+        uf: this.#uf,
+        cep: this.#cep
+        }
     }
 
-    async gravar(){
-
+    async gravar() {
+        const cliDAO = new ClienteDAO();
+        await cliDAO.gravar(this);
     }
 
-    async atualizar(){
-
+    async atualizar() {
+        const cliDAO = new ClienteDAO();
+        await cliDAO.atualizar(this);
     }
 
-    async excluir(){
-
+    async excluir() {
+        const cliDAO = new ClienteDAO();
+        await cliDAO.excluir(this);
     }
 
-    async consultar(){
-
+    async consultar(termo) {
+        const cliDAO = new ClienteDAO();
+        return await cliDAO.consultar(termo);
     }
 }

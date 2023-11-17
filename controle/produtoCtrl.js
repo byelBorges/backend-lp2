@@ -119,7 +119,7 @@ export default class ProdutoCtrl {
     consultar(requisicao, resposta) {
         resposta.type("application/json");
         if(requisicao.method === "GET" && requisicao.is("application/json")){
-            let termo = requisicao.body.termo;
+            let termo = requisicao.params.termo;
             if(!termo){
                 termo="";
             }
