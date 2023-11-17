@@ -6,7 +6,7 @@ export default class ProdutoDAO {
 
     async gravar(produto) {
         if (produto instanceof Produto) {
-            const sql = "INSERT INTO produto (prod_nome, prod_descricao, prod_precoCusto, prod_PrecoVenda, prod_dataValidade, prod_qtdEstoque, prod_cat_cod) VALUES(?,?,?,?,?,?)";
+            const sql = "INSERT INTO produto (prod_nome, prod_descricao, prod_precoCusto, prod_PrecoVenda, prod_dataValidade, prod_qtdEstoque, prod_cat_cod) VALUES(?,?,?,?,?,?, ?)";
 
             //Fazer uma consulta no bd de categoria para pegar o id?
 
@@ -14,7 +14,7 @@ export default class ProdutoDAO {
             const parametros = [produto.nome, produto.descricao, produto.precoCusto, produto.precoVenda, produto.dataValidade, produto.qtdEstoque, produto.categoria.codigo];
             const conexao = await conectar();
             const retorno = await conexao.execute(sql, parametros);
-            produto.id = retorno[0].insertId;
+            produto.codigo = retorno[0].insertId;
             global.poolConexoes.releaseConnection(conexao);
         }
     }

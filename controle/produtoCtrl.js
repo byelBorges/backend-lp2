@@ -17,7 +17,7 @@ export default class ProdutoCtrl {
             const categoria = dados.categoria;
 
             if (nome && descricao && precoCusto > 0 && precoVenda > 0 && dataValidade && qtdEstoque >= 0 && categoria) {
-                const produto = new Produto(0, nome, descricao, precoCusto, precoVenda, dataValidade, qtdEstoque, categoria.codigo);
+                const produto = new Produto(0, nome, descricao, precoCusto, precoVenda, dataValidade, qtdEstoque, categoria);
                 produto.gravar().then(() => {
                     resposta.status(200).json({
                         "status": true,
@@ -60,19 +60,19 @@ export default class ProdutoCtrl {
             const categoria = dados.categoria;
             if (codigo && nome && descricao && precoCusto && precoVenda && dataValidade && qtdEstoque && categoria) {
                 const produto = new Produto(codigo, nome, descricao, precoCusto, precoVenda, dataValidade, qtdEstoque, categoria);
-                produto.atualizar().then(()=>{
+                produto.atualizar().then(() => {
                     resposta.status(200).json({
                         "status": true,
                         "mensagem": "Produto atualizado com exito!"
                     });
-                }).catch((erro)=>{
+                }).catch((erro) => {
                     resposta.status(500).json({
                         "status": false,
                         "mensagem": "Não foi possível atualizar o produto: " + erro.message
                     });
                 });
             }
-            else{
+            else {
                 resposta.status(400).json({
                     "status": false,
                     "mensagem": "Informe os atributos de produto corretamente!"
@@ -89,30 +89,30 @@ export default class ProdutoCtrl {
 
     excluir(requisicao, resposta) {
         resposta.type("application/json");
-        if(requisicao.method === "DELETE" && requisicao.is("application/json")){
+        if (requisicao.method === "DELETE" && requisicao.is("application/json")) {
             const codigo = requisicao.body.codigo;
-            if(codigo){
+            if (codigo) {
                 const produto = new Produto(codigo);
-                produto.excluir().then(()=>{
+                produto.excluir().then(() => {
                     resposta.status(200).json({
                         "status": true,
                         "mensagem": "Produto excluído com exito!"
                     });
-                }).catch((erro)=>{
+                }).catch((erro) => {
                     resposta.status(500).json({
                         "status": false,
                         "mensagem": "Erro ao excluir um produto: " + erro.message
                     });
                 });
             }
-            else{
+            else {
                 resposta.status(400).json({
                     "status": false,
                     "mensagem": "Por favor, informe o codigo de um produto para excluí-lo!"
                 })
             }
         }
-        else{
+        else {
             resposta.status(400).json({
                 "status": false,
                 "mensagem": "Por favor, utilize o método DELETE para excluir um produto!"
@@ -122,23 +122,26 @@ export default class ProdutoCtrl {
     //Revisar
     consultar(requisicao, resposta) {
         resposta.type("application/json");
-        if(requisicao.method === "GET" && requisicao.is("application/json")){
+        if (requisicao.method === "GET" && requisicao.is("application/json")) {
             let termo = requisicao.params.termo;
-            if(!termo){
-                termo="";
+            if (!termo) {
+                termo = "";
             }
             const prod = new Produto();
-            prod.consultar(termo).then((listaProdutos)=>{
-                resposta.status(200).json(listaProdutos);
-            })
-            .catch((erro)=>{
-                resposta.status(500).json({
-                    "status": false,
-                    "mensagem": "Não foi possivel consultar um produto: " + erro.message
+            prod.consultar(termo).then((listaProdutos) => {
+                resposta.status(200).json({
+                    status: true,
+                    listaProdutos
                 });
-            });
+            })
+                .catch((erro) => {
+                    resposta.status(500).json({
+                        "status": false,
+                        "mensagem": "Não foi possivel consultar um produto: " + erro.message
+                    });
+                });
         }
-        else{
+        else {
             resposta.status(400).json({
                 "status": false,
                 "mensagem": "Por favor, utilize o método GET para consultar algum produto!"

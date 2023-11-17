@@ -8,12 +8,14 @@ export default class FornecedorCtrl {
             const cnpj = dados.cnpj;
             const nome= dados.nome;
             const endereco = dados.endereco;
+            const bairro = dados.bairro;
             const email = dados.email;
             const numero = dados.numero;
+            const complemento = dados.complemento;
             const cep = dados.cep;
             const telefone = dados.telefone;
-            if (cnpj && nome && endereco && email && numero && cep && telefone) {
-                const fornecedor = new Fornecedor(0, cnpj, nome, endereco, email, numero, cep, telefone);
+            if (cnpj && nome && endereco && bairro && email && numero && complemento && cep && telefone) {
+                const fornecedor = new Fornecedor(0, cnpj, nome, endereco, bairro, email, numero, complemento, cep, telefone);
                 fornecedor.gravar().then(() => {
                     resposta.status(200).json({
                         "status": true,
