@@ -47,7 +47,7 @@ export default class ProdutoDAO {
         if (!termo) {
             termo = "";
         }
-        if (Number.isInteger(Number(termo))) {
+        if (!isNaN(parseInt(termo))) {
             //Consultar com id
             sql = `SELECT p.prod_nome, p.prod_codigo, p.prod_descricao, p.prod_precoCusto, p.prod_PrecoVenda, p.prod_dataValidade, p.prod_qtdEstoque, c.cat_codigo, c.cat_descricao 
             FROM produto p INNER JOIN categoria c 
