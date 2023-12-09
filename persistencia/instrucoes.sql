@@ -45,3 +45,14 @@ CREATE TABLE cliente(
     cli_cep VARCHAR(10) NOT NULL,
     CONSTRAINT pk_cliente PRIMARY KEY(cli_codigo)
 );
+
+CREATE TABLE venda(
+    ven_dataVenda DATE,
+    ven_valorTotal DECIMAL(10,2) NOT NULL DEFAULT 0,
+    ven_qtdItens INT NOT NULL DEFAULT 1,
+    ven_prod_cod INT NOT NULL,
+    ven_cli_cod INT NOT NULL,
+    CONSTRAINT pk_venda PRIMARY KEY(ven_cli_cod, ven_dataVenda),
+    CONSTRAINT fk_venda_cli_cod FOREIGN KEY (ven_cli_cod) REFERENCES cliente(cli_codigo),
+    CONSTRAINT prod FOREIGN KEY (ven_prod_cod) REFERENCES produto(prod_codigo)
+);
