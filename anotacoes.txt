@@ -281,3 +281,144 @@ PRODUTOS:
         "codigo": 2
     }
 }
+
+
+
+
+
+VENDAS:
+
+{
+    "qtdItens": 2,
+    "dataVenda": "2023-01-15",
+    "valorTotal": 69.98,
+    "produto": {
+      "codigo": 1,
+      "nome": "Produto A",
+      "descricao": "Descrição do Produto A",
+      "qtdEstoque": 100,
+      "dataValidade": "2023-12-31",
+      "precoCusto": 20.00,
+      "precoVenda": 39.99
+    },
+    "cliente": {
+      "codigo": 1,
+      "cpf": "123.456.789-01",
+      "nome": "Maria Silva",
+      "endereco": "Rua das Flores",
+      "bairro": "Centro",
+      "numero": 123,
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "cep": "01234-567"
+    }
+  }
+
+
+  {
+    "qtdItens": 1,
+    "dataVenda": "2023-02-22",
+    "valorTotal": 59.99,
+    "produto": {
+      "codigo": 3,
+      "nome": "Produto C",
+      "descricao": "Descrição do Produto C",
+      "qtdEstoque": 50,
+      "dataValidade": "2024-02-28",
+      "precoCusto": 30.00,
+      "precoVenda": 59.99
+    },
+    "cliente": {
+      "codigo": 3,
+      "cpf": "111.222.333-44",
+      "nome": "Carlos Santos",
+      "endereco": "Travessa das Estrelas",
+      "bairro": "Vila Celestial",
+      "numero": 789,
+      "cidade": "Belo Horizonte",
+      "uf": "MG",
+      "cep": "34567-890"
+    }
+  }
+
+
+  {
+    "qtdItens": 3,
+    "dataVenda": "2023-03-10",
+    "valorTotal": 104.97,
+    "produto": {
+      "codigo": 6,
+      "nome": "Calça Jeans Slim",
+      "descricao": "Calça jeans moderna e elegante",
+      "qtdEstoque": 40,
+      "dataValidade": "2023-11-30",
+      "precoCusto": 35.00,
+      "precoVenda": 69.99
+    },
+    "cliente": {
+      "codigo": 2,
+      "cpf": "987.654.321-00",
+      "nome": "João Oliveira",
+      "endereco": "Avenida dos Pássaros",
+      "bairro": "Jardim Botânico",
+      "numero": 456,
+      "cidade": "Rio de Janeiro",
+      "uf": "RJ",
+      "cep": "23456-789"
+    }
+  }
+
+
+  {
+    "qtdItens": 1,
+    "dataVenda": "2023-04-05",
+    "valorTotal": 34.99,
+    "produto": {
+      "codigo": 4,
+      "nome": "Camiseta Casual",
+      "descricao": "Camiseta confortável para uso diário",
+      "qtdEstoque": 60,
+      "dataValidade": "2023-10-31",
+      "precoCusto": 18.00,
+      "precoVenda": 34.99
+    },
+    "cliente": {
+      "codigo": 4,
+      "cpf": "322.654.987-88",
+      "nome": "Isadora Mendonça Pedra",
+      "endereco": "Rua Bem Ali",
+      "bairro": "Aquele",
+      "numero": 459,
+      "cidade": "Aquela lá",
+      "uf": "SP",
+      "cep": "19064-000"
+    }
+  }
+
+
+  
+  {
+    "qtdItens": 2,
+    "dataVenda": "2023-05-20",
+    "valorTotal": 137.98,
+    "produto": {
+      "codigo": 2,
+      "nome": "Produto B",
+      "descricao": "Descrição do Produto B",
+      "qtdEstoque": 75,
+      "dataValidade": "2023-11-30",
+      "precoCusto": 15.50,
+      "precoVenda": 29.99
+    },
+    "cliente": {
+      "codigo": 5,
+      "cpf": "987.654.231-57",
+      "nome": "Carolina Correa Andrade",
+      "endereco": "Rua União dos Palmares",
+      "bairro": "Jd. União",
+      "numero": 509,
+      "cidade": "Botucatu",
+      "uf": "SP",
+      "cep": "18743-000"
+    }
+  }
