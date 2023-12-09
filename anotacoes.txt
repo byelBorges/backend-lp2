@@ -56,6 +56,27 @@ CLIENTES:
     "cep": "34567-890"
   }
 
+{
+    "cpf": "322.654.987-88",
+    "nome": "Isadora Mendonça Pedra",
+    "endereco": "Rua Bem Ali",
+    "bairro": "Aquele",
+    "numero": 459,
+    "cidade": "Aquela lá",
+    "uf": "SP",
+    "cep": "19064-000"
+  }
+
+{
+    "cpf": "987.654.231-57",
+    "nome": "Carolina Correa Andrade",
+    "endereco": "Rua União dos Palmares",
+    "bairro": "Jd. União",
+    "numero": 509,
+    "cidade": "Botucatu",
+    "uf": "SP",
+    "cep": "18743-000"
+}
 
 
 
@@ -96,7 +117,17 @@ FORNECEDORES:
     "cep": "34567-890",
     "telefone": "(31) 1111-2222"
   }
-
+{
+    "cnpj": 2147483647,
+    "nome": "Gabor S.A",
+    "endereco": "Rua Empresarial",
+    "bairro": "Bairro das Empresas",
+    "email": "gabor@empresa.com",
+    "numero": 341,
+    "complemento": "Esquina",
+    "cep": "19083-253",
+    "telefone": "(18)99873-4"
+}
 
 
 
@@ -104,17 +135,28 @@ FORNECEDORES:
 CATEGORIAS:
 
 {
+    "descricao": "Comida"
+}
+
+{
     "descricao": "Eletrônicos"
 }
 
 {
-      "descricao": "Roupas"
-    }
+    "descricao": "Esportes"
+}
 
 {
-      "descricao": "Cosméticos"
-    }
+    "descricao": "Fitness"
+}
 
+{
+    "descricao": "Jóias"
+}
+
+{
+    "descricao": "Roupas"
+}
 
 
 PRODUTOS:
@@ -166,7 +208,7 @@ PRODUTOS:
     "dataValidade": "2023-10-31",
     "qtdEstoque": 60,
     "categoria": {
-      "codigo": "2"
+      "codigo": "6"
     }
   }
 
@@ -179,6 +221,63 @@ PRODUTOS:
     "dataValidade": "2023-11-30",
     "qtdEstoque": 40,
     "categoria": {
-      "codigo": "2"
+      "codigo": "6"
     }
   }
+
+{
+    "nome": "Anel de Ouro",
+    "descricao": "Um belo anel para impressionar quem voce ama",
+    "precoCusto": "375.99",
+    "precoVenda": "720.75",
+    "dataValidade": "2025-12-12",
+    "qtdEstoque": "3.00",
+    "categoria": {
+        "codigo": 5
+    }
+},
+{
+    "nome": "Chuteira",
+    "descricao": "Com muito conforto para os seus pés, essa chuteira é perfeita para ficar longos períodos jogando fut",
+    "precoCusto": "50.00",
+    "precoVenda": "199.99",
+    "dataValidade": "2030-07-12",
+    "qtdEstoque": "12.00",
+    "categoria": {
+        "codigo": 3
+    }
+},
+{
+    "nome": "Coca-Cola",
+    "descricao": "Refrigerante sabor cola",
+    "precoCusto": "3.25",
+    "precoVenda": "7.69",
+    "dataValidade": "2024-06-27",
+    "qtdEstoque": "35.00",
+    "categoria": {
+        "codigo": 1
+    }
+},
+{
+    "nome": "Macarrão",
+    "descricao": "Uma massa perfeita para suas receitas",
+    "precoCusto": "1.89",
+    "precoVenda": "4.59",
+    "dataValidade": "2024-06-10",
+    "qtdEstoque": "7.00",
+    "categoria": {
+        "codigo": 1
+    }
+},
+{
+    "codigo": 4,
+    "nome": "Mouse Gamer",
+    "descricao": "Ótima experiencia em jogos de última gen",
+    "precoCusto": "25.90",
+    "precoVenda": "57.99",
+    "dataValidade": "2027-09-27",
+    "qtdEstoque": "17.00",
+    "categoria": {
+        "codigo": 2
+    }
+}
