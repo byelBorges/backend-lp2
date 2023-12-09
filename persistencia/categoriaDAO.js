@@ -37,7 +37,7 @@ export default class CategoriaDAO {
     async consultar(parametroConsulta) {
         let sql = '';
         let parametros = [];
-        if (!isNaN(parseInt(parametroConsulta))) {//Number.isInteger(parametroConsulta);
+        if (!isNaN(parseInt(parametroConsulta))) {
             //Consultar pelo código da categoria
             sql = "SELECT * FROM categoria WHERE cat_codigo = ? order by cat_descricao";
             parametros = [parametroConsulta];
@@ -57,6 +57,7 @@ export default class CategoriaDAO {
             const categoria = new Categoria(registro.cat_codigo, registro.cat_descricao);
             listaCategorias.push(categoria);
         }
+        global.poolConexoes.releaseConnection(conexao);
         return listaCategorias;
     }
 }

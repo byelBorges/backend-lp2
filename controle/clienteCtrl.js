@@ -113,14 +113,17 @@ export default class ClienteCtrl {
 
     consultar(requisicao, resposta) {
         resposta.type('application/json');
-        if (requisicao.method === "GET" && requisicao.is('application/json')) {
-            const termo = requisicao.params.termo;
+        if (requisicao.method === "GET") {
+            let termo = requisicao.params.termo;
             if (!termo) {
                 termo = "";
             }
             const cliente = new Cliente();
             cliente.consultar(termo).then((listaClientes) => {
-                resposta.status(200).json(listaClientes);
+                resposta.status(200).json({
+                    status: true,
+                    listaClientes
+                });
             })
                 .catch((erro) => {
                     resposta.status(500).json({

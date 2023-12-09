@@ -55,11 +55,12 @@ export default class FornecedorCtrl {
             const endereco = dados.endereco;
             const email = dados.email;
             const numero = dados.numero;
+            const bairro = dados.bairro;
             const complemento = dados.complemento;
             const cep = dados.cep;
             const telefone = dados.telefone;
             if (codigo && cnpj && nome && endereco && bairro && email && numero && complemento && cep && telefone) {
-                const fornecedor = new Fornecedor(0, cnpj, nome, endereco, bairro, email, numero, complemento, cep, telefone);
+                const fornecedor = new Fornecedor(codigo, cnpj, nome, endereco, bairro, email, numero, complemento, cep, telefone);
                 fornecedor.atualizar().then(() => {
                     resposta.status(200).json({
                         "status": true,
@@ -114,14 +115,17 @@ export default class FornecedorCtrl {
 
     consultar(requisicao, resposta) {
         resposta.type('application/json');
-        if (requisicao.method === "GET" && requisicao.is('application/json')) {
-            const termo = requisicao.params.termo;
-            if (!termo) {
-                termo = "";
-            }
+        let termo = requisicao.params.termo;
+        if(!termo){
+            termo="";
+        }
+        if (requisicao.method === "GET") {
             const fornecedor = new Fornecedor();
             fornecedor.consultar(termo).then((listaFornecedores) => {
-                resposta.status(200).json(listaFornecedores);
+                resposta.status(200).json({
+                    status: true,
+                    listaFornecedores
+                });
             })
                 .catch((erro) => {
                     resposta.status(500).json({
@@ -134,7 +138,7 @@ export default class FornecedorCtrl {
             resposta.status(400).json({
                 "status": false,
                 "mensagem": "Para consultar um fornecedor utilize o método !"
-            })
+            });
         }
     }
 }

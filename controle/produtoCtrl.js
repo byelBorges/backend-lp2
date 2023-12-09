@@ -122,11 +122,11 @@ export default class ProdutoCtrl {
     //Revisar
     consultar(requisicao, resposta) {
         resposta.type("application/json");
-        if (requisicao.method === "GET" && requisicao.is("application/json")) {
-            let termo = requisicao.params.termo;
-            if (!termo) {
-                termo = "";
-            }
+        let termo = requisicao.params.termo;
+        if(!termo){
+            termo= "";
+        }
+        if (requisicao.method === "GET") {
             const prod = new Produto();
             prod.consultar(termo).then((listaProdutos) => {
                 resposta.status(200).json({

@@ -7,10 +7,7 @@ export default class ProdutoDAO {
     async gravar(produto) {
         if (produto instanceof Produto) {
             const sql = "INSERT INTO produto (prod_nome, prod_descricao, prod_precoCusto, prod_PrecoVenda, prod_dataValidade, prod_qtdEstoque, prod_cat_cod) VALUES(?,?,?,?,?,?, ?)";
-
             //Fazer uma consulta no bd de categoria para pegar o id?
-
-
             const parametros = [produto.nome, produto.descricao, produto.precoCusto, produto.precoVenda, produto.dataValidade, produto.qtdEstoque, produto.categoria.codigo];
             const conexao = await conectar();
             const retorno = await conexao.execute(sql, parametros);
@@ -31,7 +28,7 @@ export default class ProdutoDAO {
 
     async excluir(prod) {
         if (prod instanceof Produto) {
-            const sql = "DELETE produto where prod_codigo= ?";
+            const sql = "DELETE FROM produto where prod_codigo= ?";
             const parametros = [prod.codigo];
             const con = await conectar();
             await con.execute(sql, parametros);
@@ -40,20 +37,20 @@ export default class ProdutoDAO {
     }
 
     async consultar(termo) {
-        const sql = "";
-        const parametros = "";
-        let listaProdutos = [];
+        let sql = "";
+        let parametros = [];
         const conexao = await conectar();
         if (!termo) {
             termo = "";
         }
+        let listaProdutos= [];
         if (!isNaN(parseInt(termo))) {
             //Consultar com id
             sql = `SELECT p.prod_nome, p.prod_codigo, p.prod_descricao, p.prod_precoCusto, p.prod_PrecoVenda, p.prod_dataValidade, p.prod_qtdEstoque, c.cat_codigo, c.cat_descricao 
             FROM produto p INNER JOIN categoria c 
-            ON p.cat_codigo = c.cat_codigo 
+            ON p.prod_cat_cod = c.cat_codigo 
             WHERE p.prod_codigo= ? 
-            ORDER BY p.prod.descricao`;
+            ORDER BY p.prod_descricao`;
             parametros = [termo];
             const [registros] = await conexao.execute(sql, parametros);
             for(const registro of registros){
@@ -63,11 +60,12 @@ export default class ProdutoDAO {
             }
         }
         else {
+            //Consultar pelo nome do produto
             sql = `SELECT p.prod_nome, p.prod_codigo, p.prod_descricao, p.prod_precoCusto, p.prod_PrecoVenda, p.prod_dataValidade, p.prod_qtdEstoque, c.cat_codigo, c.cat_descricao 
             FROM produto p INNER JOIN categoria c 
-            ON p.cat_codigo = c.cat_codigo 
-            WHERE p.prod_descricao  like ? 
-            ORDER BY p.prod.descricao`;
+            ON p.prod_cat_cod = c.cat_codigo 
+            WHERE p.prod_nome  like ? 
+            ORDER BY p.prod_nome`;
             parametros = ['%'+termo+'%'];
             const [registros] = await conexao.execute(sql, parametros);
             for(const registro of registros){
@@ -76,5 +74,7 @@ export default class ProdutoDAO {
                 listaProdutos.push(produto);
             }
         }
+        global.poolConexoes.releaseConnection(conexao);
+        return listaProdutos;
     }
 }
