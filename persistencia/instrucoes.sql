@@ -9,7 +9,7 @@ create table categoria(
 create table produto(
     prod_codigo int not null auto_increment,
     prod_nome varchar(50) not null,
-    prod_descricao varchar(100) not null,
+    prod_descricao varchar(200) not null,
     prod_precoCusto decimal(10,2) not null default 0,
     prod_precoVenda decimal(10,2) not null default 0,
     prod_dataValidade DATE,

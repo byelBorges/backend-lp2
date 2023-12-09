@@ -11,12 +11,8 @@ export default class ProdutoCtrl {
             const precoVenda = dados.precoVenda;
             const dataValidade = dados.dataValidade;
             const qtdEstoque = dados.qtdEstoque;
-
-            //Instanciar categoria? Ou pegar direto?
-            //Verificar se categoria existe
             const categoria = dados.categoria;
-
-            if (nome && descricao && precoCusto > 0 && precoVenda > 0 && dataValidade && qtdEstoque >= 0 && categoria) {
+            if (nome && descricao && precoCusto >= 0 && precoVenda >= 0 && dataValidade && qtdEstoque >= 0 && categoria) {
                 const produto = new Produto(0, nome, descricao, precoCusto, precoVenda, dataValidade, qtdEstoque, categoria);
                 produto.gravar().then(() => {
                     resposta.status(200).json({

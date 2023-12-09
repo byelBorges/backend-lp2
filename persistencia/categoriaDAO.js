@@ -47,7 +47,7 @@ export default class CategoriaDAO {
             if (!parametroConsulta) {
                 parametroConsulta = '';
             }
-            sql = "SELECT * FROM  categoria WHERE cat_descricao like ?";
+            sql = "SELECT * FROM  categoria WHERE cat_descricao like ? order by cat_descricao";
             parametros = ['%' + parametroConsulta + '%'];
         }
         const conexao = await conectar();

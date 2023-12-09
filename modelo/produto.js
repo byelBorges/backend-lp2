@@ -84,7 +84,7 @@ export default class Produto{
             descricao: this.#descricao,
             precoCusto: this.#precoCusto,
             precoVenda: this.#precoVenda,
-            dataValidade: this.#dataValidade,
+            dataValidade: this.#dataValidade.toISOString().split('T')[0],
             qtdEstoque: this.#qtdEstoque,
             categoria: this.#categoria.toJSON()
         }
