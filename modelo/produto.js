@@ -80,6 +80,7 @@ export default class Produto{
     toJSON(){
         return {
             codigo: this.#codigo,
+            nome: this.#nome,
             descricao: this.#descricao,
             precoCusto: this.#precoCusto,
             precoVenda: this.#precoVenda,
