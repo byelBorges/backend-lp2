@@ -45,7 +45,7 @@ export default class ClienteDAO {
             if (!parametroConsulta) {
                 parametroConsulta = '';
             }
-            sql = 'SELECT * FROM cliente where cli_nome like ?';
+            sql = 'SELECT * FROM cliente where cli_nome like ? ORDER BY cli_nome';
             parametros = ['%' + parametroConsulta + '%'];
         }
         const conexao = await conectar();
