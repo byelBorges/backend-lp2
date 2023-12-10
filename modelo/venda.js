@@ -53,11 +53,11 @@ export default class Venda {
     toJSON(){
         return {
             qtdItens: this.#qtdItens,
-            dataVenda: this.#dataVenda.toISOString().split('T')[0],
+            dataVenda: formatarData(this.#dataVenda),
             valorTotal: this.#valorTotal,
             cliente: this.#cliente.toJSON(),
             produto: this.#produto.toJSON()
-        }
+        };
     }
 
     toString(){
@@ -83,4 +83,21 @@ export default class Venda {
         const venDAO = new VendaDAO();
         return await venDAO.consultar(termo);
     }
+}
+
+function padZero(valor) {
+    return valor < 10 ? '0' + valor : valor;
+}
+
+function formatarData(data) {
+    const dataObj = new Date(data);
+
+    const ano = dataObj.getFullYear();
+    const mes = padZero(dataObj.getMonth() + 1);// Adiciona 1 porque os meses são indexados de 0 a 11
+    const dia = padZero(dataObj.getDate());
+    const horas = padZero(dataObj.getHours());
+    const minutos = padZero(dataObj.getMinutes());
+    const segundos = padZero(dataObj.getSeconds());
+
+    return `${ano}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
 }
