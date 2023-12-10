@@ -53,7 +53,7 @@ export default class Venda {
     toJSON(){
         return {
             qtdItens: this.#qtdItens,
-            dataVenda: this.#dataVenda,
+            dataVenda: this.#dataVenda.toISOString().split('T')[0],
             valorTotal: this.#valorTotal,
             cliente: this.#cliente.toJSON(),
             produto: this.#produto.toJSON()

@@ -3,6 +3,7 @@ import rotaCategoria from "./rotas/rotaCategoria.js";
 import rotaProduto from "./rotas/rotaProduto.js";
 import rotaCliente from "./rotas/rotaCliente.js";
 import rotaFornecedor from "./rotas/rotaFornecedor.js";
+import rotaVenda from "./rotas/rotaVenda.js";
 import cors from "cors";
 
 //Aplicação HTTP pronta, bastando parametrizá-la
@@ -18,6 +19,7 @@ app.use('/categoria', rotaCategoria);
 app.use('/produto', rotaProduto);
 app.use('/cliente', rotaCliente);
 app.use('/fornecedor', rotaFornecedor);
+app.use('/venda', rotaVenda);
 
 
 app.listen(porta, host, ()=>{

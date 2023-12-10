@@ -47,7 +47,7 @@ CREATE TABLE cliente(
 );
 
 CREATE TABLE venda(
-    ven_dataVenda DATE,
+    ven_dataVenda DATETIME,
     ven_valorTotal DECIMAL(10,2) NOT NULL DEFAULT 0,
     ven_qtdItens INT NOT NULL DEFAULT 1,
     ven_prod_cod INT NOT NULL,
